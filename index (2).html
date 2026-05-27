@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSK4A Lección 1A</title>
+
+<style>
+:root{
+  --bg:#0b1020;
+  --card:#172033;
+  --card2:#202b42;
+  --text:#f8fafc;
+  --muted:#cbd5e1;
+  --gold:#facc15;
+  --blue:#38bdf8;
+  --green:#22c55e;
+  --red:#ef4444;
+  --line:rgba(255,255,255,.12);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(56,189,248,.18), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(250,204,21,.12), transparent 30%),
+    var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+header{
+  min-height:70vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:40px 20px;
+}
+
+.hero{
+  max-width:1050px;
+  padding:50px 35px;
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:rgba(11,16,32,.82);
+  box-shadow:0 30px 90px rgba(0,0,0,.35);
+}
+
+.tag{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(56,189,248,.15);
+  border:1px solid rgba(56,189,248,.35);
+  color:#bae6fd;
+  margin-bottom:18px;
+}
+
+h1{
+  font-size:clamp(38px,6vw,72px);
+  line-height:1.05;
+  margin:0 0 18px;
+}
+
+.blue{color:var(--blue)}
+.gold{color:var(--gold)}
+
+.subtitle{
+  max-width:850px;
+  margin:auto;
+  color:var(--muted);
+  font-size:20px;
+}
+
+main{
+  max-width:1200px;
+  margin:auto;
+  padding:20px 20px 90px;
+}
+
+section{margin-bottom:55px}
+
+.section-title{
+  font-size:36px;
+  margin-bottom:8px;
+}
+
+.section-intro{
+  color:var(--muted);
+  margin-bottom:24px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+}
+
+.card,.lab,.word-card,.sentence-card{
+  background:rgba(23,32,51,.92);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:22px;
+}
+
+.word{
+  font-size:34px;
+  font-weight:800;
+  color:var(--gold);
+}
+
+.pinyin{
+  color:#93c5fd;
+  font-size:18px;
+}
+
+.meaning{
+  color:var(--muted);
+  filter:blur(6px);
+  transition:.25s ease;
+  cursor:pointer;
+  user-select:none;
+}
+
+.meaning:hover{
+  filter:blur(0);
+}
+
+.btn{
+  border:none;
+  border-radius:14px;
+  padding:11px 15px;
+  font-weight:700;
+  cursor:pointer;
+  margin:6px 5px 0 0;
+}
+
+.btn-blue{background:var(--blue);color:#06111f}
+.btn-gold{background:var(--gold);color:#111827}
+.btn-dark{background:rgba(255,255,255,.08);color:white;border:1px solid var(--line)}
+
+.result{
+  margin-top:12px;
+  padding:12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.07);
+  color:var(--muted);
+  min-height:42px;
+}
+
+.correct{
+  border:1px solid var(--green);
+  background:rgba(34,197,94,.14);
+  color:#bbf7d0;
+}
+
+.wrong{
+  border:1px solid var(--red);
+  background:rgba(239,68,68,.14);
+  color:#fecaca;
+}
+
+.sentence{
+  font-size:24px;
+  color:var(--gold);
+  font-weight:800;
+}
+
+.translation{
+  color:var(--muted);
+}
+
+textarea{
+  width:100%;
+  min-height:130px;
+  margin-top:10px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.25);
+  color:white;
+  padding:15px;
+  font-size:16px;
+}
+
+.option{
+  display:block;
+  width:100%;
+  margin:8px 0;
+  padding:13px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.07);
+  color:white;
+  cursor:pointer;
+  text-align:left;
+}
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  padding:35px;
+}
+.phase-wrapper{
+  max-width:1200px;
+  margin:-40px auto 50px;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:18px;
+}
+
+.phase-card,
+.progress-card{
+  background:rgba(23,32,51,.95);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 20px 60px rgba(0,0,0,.28);
+}
+
+.phase-card h2,
+.progress-card h3{
+  margin-top:0;
+}
+
+.phase-card p{
+  color:var(--muted);
+}
+
+.phase-buttons{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+
+.phase-btn{
+  text-align:center;
+  text-decoration:none;
+  color:white;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px 8px;
+  font-weight:700;
+  font-size:13px;
+  transition:.2s ease;
+}
+
+.phase-btn:hover,
+.phase-btn.active{
+  background:#f97316;
+  transform:translateY(-2px);
+}
+
+.progress-bar{
+  width:100%;
+  height:14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+  overflow:hidden;
+  margin:18px 0;
+}
+
+.progress-fill{
+  width:0%;
+  height:100%;
+  background:var(--green);
+  transition:.3s ease;
+}
+
+.btn-green{
+  background:var(--green);
+  color:white;
+  width:100%;
+}
+
+@media(max-width:850px){
+  .phase-wrapper{
+    grid-template-columns:1fr;
+    margin-top:20px;
+  }
+
+  .phase-buttons{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="hero">
+    <div class="tag">HSK4A · Lección 1A</div>
+    <h1>Escucha y habla con la <span class="blue">primera parte</span> de la lección 1</h1>
+    <p class="subtitle">
+      Laboratorio oral basado en el vocabulario 1–19 y los patrones 不仅……而且……, 从来 y 刚.
+    </p>
+    <br>
+    <button class="btn btn-blue" onclick="location.href='#vocabulario'">Iniciar vocabulario</button>
+    <button class="btn btn-gold" onclick="location.href='#gramatica'">Practicar gramática</button>
+  </div>
+</header>
+
+<section class="phase-wrapper">
+  <div class="phase-card">
+    <h2>Ruta de la Lección 1A</h2>
+    <p>
+      Avanza por 6 fases: primero escucha y reconoce, luego pronuncia, comprende, analiza la gramática y termina con una misión oral tipo HSKK.
+    </p>
+
+    <div class="phase-buttons">
+      <a href="#vocabulario" class="phase-btn active">1. Escucha<br>y reconoce</a>
+      <a href="#vocabulario" class="phase-btn">2. Pronuncia<br>y compara</a>
+      <a href="#dictado" class="phase-btn">3. Dictado<br>auditivo</a>
+      <a href="#explicacion-gramatical" class="phase-btn">4. Gramática<br>viva</a>
+      <a href="#conversacion" class="phase-btn">5. Conversación<br>guiada</a>
+      <a href="#mision" class="phase-btn">6. Misión<br>HSKK</a>
+    </div>
+  </div>
+
+  <div class="progress-card">
+    <h3>Progreso</h3>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <p id="progressText">0 de 6 fases completadas</p>
+    <button class="btn btn-green" onclick="resetProgress()">Reiniciar progreso</button>
+  </div>
+</section>
+
+<main>
+
+<section>
+  <h2 class="section-title">Objetivo</h2>
+  <p class="section-intro">
+    Al terminar, el alumno podrá reconocer auditivamente el vocabulario, repetirlo con apoyo del micrófono y usarlo oralmente en frases breves.
+  </p>
+
+  <div class="grid">
+    <div class="card"><h3>Recordar</h3><p>Escuchar y reconocer palabras clave.</p></div>
+    <div class="card"><h3>Comprender</h3><p>Relacionar sonido, significado y contexto.</p></div>
+    <div class="card"><h3>Aplicar</h3><p>Repetir frases usando la gramática.</p></div>
+    <div class="card"><h3>Crear</h3><p>Responder oralmente una pregunta tipo HSKK.</p></div>
+  </div>
+</section>
+
+<section id="vocabulario">
+  <h2 class="section-title">1. Vocabulario oral</h2>
+  <p class="section-intro">Escucha cada palabra y después repítela con el micrófono. La traducción aparece al pasar el cursor.</p>
+
+  <div class="grid" id="wordGrid"></div>
+</section>
+
+  <section id="dictado">
+  <h2 class="section-title">2. Dictado auditivo</h2>
+  <p class="section-intro">Escucha la palabra en chino y selecciona su significado en español.</p>
+
+  <div class="lab">
+    <button class="btn btn-blue" onclick="playDictation()">Escuchar palabra</button>
+    <div id="dictationOptions"></div>
+    <div id="dictationResult" class="result">Esperando respuesta...</div>
+  </div>
+</section>
+
+<section id="explicacion-gramatical">
+
+  <h2 class="section-title">4. Explicación gramatical</h2>
+
+  <p class="section-intro">
+    Observa cómo funcionan las estructuras principales de esta parte de la lección.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <h3 class="gold">不仅……而且……</h3>
+
+      <p>
+        Se usa para expresar:
+        <strong>“no solo…, sino también…”</strong>
+      </p>
+
+      <div class="sentence">
+        他不仅学习法律，而且性格也很好。
+      </div>
+
+      <p class="translation">
+        Él no solo estudia leyes, sino que también tiene buena personalidad.
+      </p>
+
+      <button class="btn btn-blue"
+      onclick="speakChinese('他不仅学习法律，而且性格也很好。')">
+      Escuchar ejemplo
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3 class="gold">从来</h3>
+
+      <p>
+        Se usa para hablar de algo que nunca ha pasado.
+      </p>
+
+      <div class="sentence">
+        我从来没开过玩笑。
+      </div>
+
+      <p class="translation">
+        Yo nunca he bromeado.
+      </p>
+
+      <button class="btn btn-blue"
+      onclick="speakChinese('我从来没开过玩笑。')">
+      Escuchar ejemplo
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3 class="gold">刚</h3>
+
+      <p>
+        Se usa para decir que algo pasó hace muy poco tiempo.
+      </p>
+
+      <div class="sentence">
+        我刚认识他。
+      </div>
+
+      <p class="translation">
+        Apenas lo conocí.
+      </p>
+
+      <button class="btn btn-blue"
+      onclick="speakChinese('我刚认识他。')">
+      Escuchar ejemplo
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section id="gramatica-activa">
+
+  <h2 class="section-title">4. Gramática activa oral</h2>
+
+  <p class="section-intro">
+    Escucha la instrucción y responde oralmente usando la estructura correcta.
+  </p>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3 class="gold">Ejercicio 1 · Usa 不仅……而且……</h3>
+      <p>Di en chino: “Él no solo estudia leyes, sino que también tiene buena personalidad”.</p>
+
+      <button class="btn btn-blue" onclick="speakChinese('他不仅学习法律，而且性格很好。')">
+        Escuchar modelo
+      </button>
+
+      <button class="btn btn-gold" onclick="checkPronunciation('他不仅学习法律，而且性格很好。','grammarActive1')">
+        Responder oralmente
+      </button>
+
+      <div id="grammarActive1" class="result">Esperando pronunciación...</div>
+    </div>
+
+    <div class="card">
+      <h3 class="gold">Ejercicio 2 · Usa 从来</h3>
+      <p>Di en chino: “Yo nunca he bromeado”.</p>
+
+      <button class="btn btn-blue" onclick="speakChinese('我从来没开过玩笑。')">
+        Escuchar modelo
+      </button>
+
+      <button class="btn btn-gold" onclick="checkPronunciation('我从来没开过玩笑。','grammarActive2')">
+        Responder oralmente
+      </button>
+
+      <div id="grammarActive2" class="result">Esperando pronunciación...</div>
+    </div>
+
+    <div class="card">
+      <h3 class="gold">Ejercicio 3 · Usa 刚</h3>
+      <p>Di en chino: “Apenas lo conocí”.</p>
+
+      <button class="btn btn-blue" onclick="speakChinese('我刚认识他。')">
+        Escuchar modelo
+      </button>
+
+      <button class="btn btn-gold" onclick="checkPronunciation('我刚认识他。','grammarActive3')">
+        Responder oralmente
+      </button>
+
+      <div id="grammarActive3" class="result">Esperando pronunciación...</div>
+    </div>
+
+    <div class="card">
+      <h3 class="gold">Ejercicio 4 · Transforma oralmente</h3>
+      <p>Usa 不仅……而且…… para unir estas ideas:</p>
+      <div class="translation">Él estudia leyes. Además tiene buena personalidad.</div>
+
+      <button class="btn btn-blue" onclick="speakChinese('请用不仅而且说一句话。')">
+        Escuchar instrucción
+      </button>
+
+      <button class="btn btn-gold" onclick="checkKeywords(['不仅','而且','法律','性格'],'grammarActive4')">
+        Responder oralmente
+      </button>
+
+      <div id="grammarActive4" class="result">Esperando pronunciación...</div>
+    </div>
+
+    <div class="card">
+      <h3 class="gold">Ejercicio 5 · Respuesta personal</h3>
+      <p>Responde en chino usando 从来:</p>
+      <div class="sentence">你从来没做过什么？</div>
+      <div class="translation">¿Qué cosa nunca has hecho?</div>
+
+      <button class="btn btn-blue" onclick="speakChinese('你从来没做过什么？')">
+        Escuchar pregunta
+      </button>
+
+      <button class="btn btn-gold" onclick="checkKeywords(['从来','没'],'grammarActive5')">
+        Responder oralmente
+      </button>
+
+      <div id="grammarActive5" class="result">Esperando respuesta...</div>
+    </div>
+
+    <div class="card">
+      <h3 class="gold">Ejercicio 6 · Respuesta rápida</h3>
+      <p>Responde en chino usando 刚:</p>
+      <div class="sentence">你刚做了什么？</div>
+      <div class="translation">¿Qué acabas de hacer?</div>
+
+      <button class="btn btn-blue" onclick="speakChinese('你刚做了什么？')">
+        Escuchar pregunta
+      </button>
+
+      <button class="btn btn-gold" onclick="checkKeywords(['刚'],'grammarActive6')">
+        Responder oralmente
+      </button>
+
+      <div id="grammarActive6" class="result">Esperando respuesta...</div>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="gramatica">
+  <h2 class="section-title">5. Gramática oral</h2>
+  <p class="section-intro">Escucha, repite y revisa si tu pronunciación se parece a la frase.</p>
+  <div id="sentenceList"></div>
+</section>
+
+<section id="conversacion">
+  <h2 class="section-title">4. Mini conversación</h2>
+  <p class="section-intro">Escucha el diálogo completo y luego repite línea por línea.</p>
+
+  <div class="lab">
+    <p class="sentence">A: 你对他的印象怎么样？</p>
+    <p class="translation">¿Qué impresión tienes de él?</p>
+    <button class="btn btn-blue" onclick="speakChinese('你对他的印象怎么样？')">Escuchar</button>
+    <button class="btn btn-gold" onclick="checkPronunciation('你对他的印象怎么样？','dialog1')">Pronunciar</button>
+    <div id="dialog1" class="result">Esperando pronunciación...</div>
+
+    <p class="sentence">B: 他不仅性格很好，而且我们俩有共同的爱好。</p>
+    <p class="translation">No solo tiene buena personalidad, además los dos tenemos intereses en común.</p>
+    <button class="btn btn-blue" onclick="speakChinese('他不仅性格很好，而且我们俩有共同的爱好。')">Escuchar</button>
+    <button class="btn btn-gold" onclick="checkPronunciation('他不仅性格很好，而且我们俩有共同的爱好。','dialog2')">Pronunciar</button>
+    <div id="dialog2" class="result">Esperando pronunciación...</div>
+  </div>
+</section>
+
+<section id="mision">
+  <h2 class="section-title">5. Producción oral tipo HSKK</h2>
+  <p class="section-intro">
+    Prepara una respuesta de 40 a 60 segundos. Usa mínimo 3 palabras del vocabulario y una estructura gramatical.
+  </p>
+
+  <div class="lab">
+    <h3 class="gold">Pregunta</h3>
+    <p class="sentence">你觉得什么样的人适合结婚？为什么？</p>
+    <textarea placeholder="Escribe ideas clave antes de hablar. No traduzcas palabra por palabra."></textarea>
+    <br>
+    <button class="btn btn-blue" onclick="speakChinese('你觉得什么样的人适合结婚？为什么？')">Escuchar pregunta</button>
+    <button class="btn btn-gold" onclick="openAnswer('finalAnswer')">Responder con micrófono</button>
+    <div id="finalAnswer" class="result">Tu respuesta reconocida aparecerá aquí.</div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Autoevaluación</h2>
+  <div class="lab">
+    <p>Antes de terminar, revisa si lograste:</p>
+    <ul>
+      <li>Reconocer al menos 15 palabras al escucharlas.</li>
+      <li>Pronunciar al menos 10 palabras con claridad.</li>
+      <li>Usar 不仅……而且…… en una frase.</li>
+      <li>Usar 从来 o 刚 en una frase oral.</li>
+      <li>Responder una pregunta breve sin leer todo.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  HSK4A · Lección 1A · Laboratorio oral
+</footer>
+
+<script>
+const words = [
+  {ch:"法律", py:"fǎlǜ", es:"ley"},
+  {ch:"俩", py:"liǎ", es:"los dos / ambos"},
+  {ch:"印象", py:"yìnxiàng", es:"impresión"},
+  {ch:"深", py:"shēn", es:"profundo"},
+  {ch:"熟悉", py:"shúxī", es:"estar familiarizado con"},
+  {ch:"不仅", py:"bùjǐn", es:"no solo"},
+  {ch:"性格", py:"xìnggé", es:"personalidad / carácter"},
+  {ch:"开玩笑", py:"kāi wánxiào", es:"bromear"},
+  {ch:"从来", py:"cónglái", es:"siempre / nunca, según contexto"},
+  {ch:"最好", py:"zuìhǎo", es:"sería mejor"},
+  {ch:"共同", py:"gòngtóng", es:"común / compartido"},
+  {ch:"适合", py:"shìhé", es:"ser adecuado para"},
+  {ch:"幸福", py:"xìngfú", es:"feliz / felicidad"},
+  {ch:"生活", py:"shēnghuó", es:"vida / vivir"},
+  {ch:"刚", py:"gāng", es:"apenas / recién"},
+  {ch:"浪漫", py:"làngmàn", es:"romántico"},
+  {ch:"够", py:"gòu", es:"ser suficiente"},
+  {ch:"缺点", py:"quēdiǎn", es:"defecto"},
+  {ch:"接受", py:"jiēshòu", es:"aceptar"}
+];
+
+const sentences = [
+  {
+    ch:"他不仅学习法律，而且性格也很好。",
+    es:"Él no solo estudia leyes, sino que también tiene buena personalidad."
+  },
+  {
+    ch:"我们俩从来没开过玩笑。",
+    es:"Nosotros dos nunca hemos bromeado."
+  },
+  {
+    ch:"我刚认识他，但是对他的印象很深。",
+    es:"Apenas lo conocí, pero tengo una impresión profunda de él."
+  },
+  {
+    ch:"两个人在一起，最好有共同的爱好。",
+    es:"Cuando dos personas están juntas, lo mejor es tener intereses en común."
+  },
+  {
+    ch:"只有接受他的缺点，你们才能幸福地生活。",
+    es:"Solo aceptando sus defectos podrán vivir felizmente."
+  }
+];
+
+function speakChinese(text){
+  if(!("speechSynthesis" in window)){
+    alert("Tu navegador no permite lectura de voz.");
+    return;
+  }
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "zh-CN";
+  u.rate = 0.82;
+  u.pitch = 1;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function cleanText(t){
+  return t.replace(/[，。！？、\s,.!?]/g,"").trim();
+}
+
+function similarity(a,b){
+  a = cleanText(a);
+  b = cleanText(b);
+  let matches = 0;
+  const min = Math.min(a.length,b.length);
+  const max = Math.max(a.length,b.length);
+  for(let i=0;i<min;i++){
+    if(a[i] === b[i]) matches++;
+  }
+  return max === 0 ? 0 : matches / max;
+}
+
+function checkPronunciation(target,id){
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const box = document.getElementById(id);
+
+  if(!SpeechRecognition){
+    box.innerHTML = "Tu navegador no permite reconocimiento de voz. Prueba en Chrome.";
+    return;
+  }
+
+  const rec = new SpeechRecognition();
+  rec.lang = "zh-CN";
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+
+  box.className = "result";
+  box.innerHTML = "Escuchando...";
+
+  rec.start();
+
+  rec.onresult = function(e){
+    const spoken = e.results[0][0].transcript;
+    const score = similarity(spoken,target);
+
+    if(score >= .80){
+      box.className = "result correct";
+      box.innerHTML = "Correcto. Escuché: " + spoken;
+    }else if(score >= .55){
+      box.className = "result";
+      box.innerHTML = "Casi. Escuché: " + spoken + ". Intenta otra vez.";
+    }else{
+      box.className = "result wrong";
+      box.innerHTML = "Necesita práctica. Escuché: " + spoken + ". Vuelve a escuchar y repite.";
+    }
+  };
+
+  rec.onerror = function(){
+    box.className = "result wrong";
+    box.innerHTML = "No pude escuchar bien. Intenta de nuevo.";
+  };
+}
+
+function openAnswer(id){
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const box = document.getElementById(id);
+
+  if(!SpeechRecognition){
+    box.innerHTML = "Tu navegador no permite reconocimiento de voz. Prueba en Chrome.";
+    return;
+  }
+
+  const rec = new SpeechRecognition();
+  rec.lang = "zh-CN";
+  rec.interimResults = true;
+  rec.continuous = true;
+
+  box.className = "result";
+  box.innerHTML = "Escuchando tu respuesta...";
+
+  let finalText = "";
+
+  rec.start();
+
+  rec.onresult = function(e){
+    let temp = "";
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      if(e.results[i].isFinal){
+        finalText += e.results[i][0].transcript + " ";
+      }else{
+        temp += e.results[i][0].transcript;
+      }
+    }
+    box.innerHTML = finalText + temp;
+  };
+
+  setTimeout(()=>{
+    rec.stop();
+    box.innerHTML += "<br><br>Tiempo terminado. Revisa si usaste vocabulario y gramática.";
+  },60000);
+}
+
+
+function checkKeywords(keywords,id){
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const box = document.getElementById(id);
+
+  if(!SpeechRecognition){
+    box.innerHTML = "Tu navegador no permite reconocimiento de voz. Prueba en Chrome.";
+    return;
+  }
+
+  const rec = new SpeechRecognition();
+  rec.lang = "zh-CN";
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+
+  box.className = "result";
+  box.innerHTML = "Escuchando...";
+
+  rec.start();
+
+  rec.onresult = function(e){
+    const spoken = e.results[0][0].transcript;
+    let matches = 0;
+
+    keywords.forEach(k=>{
+      if(spoken.includes(k)) matches++;
+    });
+
+    if(matches >= Math.max(1, keywords.length - 1)){
+      box.className = "result correct";
+      box.innerHTML = "Muy bien. Escuché: " + spoken;
+    }else{
+      box.className = "result wrong";
+      box.innerHTML = "Intenta usar la estructura completa. Escuché: " + spoken;
+    }
+  };
+
+  rec.onerror = function(){
+    box.className = "result wrong";
+    box.innerHTML = "No pude escuchar bien. Intenta de nuevo.";
+  };
+}
+
+function renderWords(){
+  const grid = document.getElementById("wordGrid");
+  words.forEach((w,i)=>{
+    const div = document.createElement("div");
+    div.className = "word-card";
+    div.innerHTML = `
+      <div class="word">${i+1}. ${w.ch}</div>
+      <div class="pinyin">${w.py}</div>
+      <div class="meaning">${w.es}</div>
+      <button class="btn btn-blue" onclick="speakChinese('${w.ch}')">Escuchar</button>
+      <button class="btn btn-gold" onclick="checkPronunciation('${w.ch}','word${i}')">Pronunciar</button>
+      <div id="word${i}" class="result">Esperando pronunciación...</div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+function renderSentences(){
+  const list = document.getElementById("sentenceList");
+  sentences.forEach((s,i)=>{
+    const div = document.createElement("div");
+    div.className = "sentence-card";
+    div.style.marginBottom = "18px";
+    div.innerHTML = `
+      <div class="sentence">${s.ch}</div>
+      <div class="translation">${s.es}</div>
+      <button class="btn btn-blue" onclick="speakChinese('${s.ch}')">Escuchar</button>
+      <button class="btn btn-gold" onclick="checkPronunciation('${s.ch}','sent${i}')">Pronunciar</button>
+      <div id="sent${i}" class="result">Esperando pronunciación...</div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+let currentDictation = null;
+
+function playDictation(){
+  const random = words[Math.floor(Math.random()*words.length)];
+  currentDictation = random.ch;
+  speakChinese(random.ch);
+
+  let options = [random];
+  while(options.length < 3){
+    let w = words[Math.floor(Math.random()*words.length)];
+    if(!options.find(o=>o.ch === w.ch)) options.push(w);
+  }
+
+  options.sort(()=>Math.random() - .5);
+
+  const box = document.getElementById("dictationOptions");
+  box.innerHTML = "";
+  options.forEach(o=>{
+    const btn = document.createElement("button");
+    btn.className = "option";
+    btn.innerHTML = `${o.es}`;
+    btn.onclick = ()=>checkDictation(o.ch);
+    box.appendChild(btn);
+  });
+
+  document.getElementById("dictationResult").className = "result";
+  document.getElementById("dictationResult").innerHTML = "Selecciona la palabra que escuchaste.";
+}
+
+function checkDictation(answer){
+  const box = document.getElementById("dictationResult");
+  if(answer === currentDictation){
+    box.className = "result correct";
+    box.innerHTML = "Correcto.";
+  }else{
+    box.className = "result wrong";
+    box.innerHTML = "Incorrecto. Escucha otra vez.";
+  }
+}
+
+let completedPhases = JSON.parse(localStorage.getItem("completedPhasesHSK4L1A") || "[]");
+
+function updateProgress(){
+  const total = 6;
+  const done = completedPhases.length;
+  const fill = document.getElementById("progressFill");
+  const text = document.getElementById("progressText");
+  if(fill) fill.style.width = ((done/total)*100) + "%";
+  if(text) text.innerHTML = done + " de " + total + " fases completadas";
+}
+
+function completePhase(n){
+  if(!completedPhases.includes(n)){
+    completedPhases.push(n);
+    localStorage.setItem("completedPhasesHSK4L1A", JSON.stringify(completedPhases));
+    updateProgress();
+  }
+}
+
+function resetProgress(){
+  completedPhases = [];
+  localStorage.removeItem("completedPhasesHSK4L1A");
+  updateProgress();
+}
+
+function markPhaseOnScroll(){
+  const map = [
+    ["vocabulario",1],
+    ["dictado",3],
+    ["explicacion-gramatical",4],
+    ["conversacion",5],
+    ["mision",6]
+  ];
+  map.forEach(([id,n])=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight * .55 && rect.bottom > 0){
+      completePhase(n);
+    }
+  });
+}
+
+window.addEventListener("scroll", markPhaseOnScroll);
+
+renderWords();
+renderSentences();
+updateProgress();
+</script>
+
+</body>
+</html>
